@@ -36,7 +36,7 @@ import io.filepicker.models.FPFile;
 public class MainActivity extends AppCompatActivity {
     private static final String FILEPICKER_API_KEY = "A82mVmsgdS8KEm90aaGrCz";
     EditText name,address,area,price_rooms,contact_name,contact_num,amenities,bcard;
-    String lat,lon,url;
+    String lat,lon,url1;
     String[] amen;
     int m=0,f=0;
     // OPTIONAL FIELD
@@ -88,8 +88,24 @@ public class MainActivity extends AppCompatActivity {
         pDialog.setMessage("Loading...");
         pDialog.show();
 
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("lat", lat);
+        params.put("lon",lon);
+        params.put("namepg", name.getText().toString());
+        params.put("address", address.getText().toString());
+        params.put("area", area.getText().toString());
+        params.put("price_rooms", price_rooms.getText().toString());
+        params.put("Contactname", contact_name.getText().toString());
+        params.put("Contactnum", contact_num.getText().toString());
+        params.put("amenities",mJSONArray.toString());
+        params.put("url",url1);
+        params.put("bcard",bcard.getText().toString());
+        params.put("Gender_male",Integer.toString(m));
+        params.put("Gender_female",Integer.toString(f));
+
+
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                url, null,
+                url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -106,7 +122,9 @@ public class MainActivity extends AppCompatActivity {
                 pDialog.hide();
                 Toast.makeText(getBaseContext(),error.getMessage().toString(),Toast.LENGTH_LONG).show();
             }
-        }) {
+        })
+
+        {
 
             @Override
             protected Map<String, String> getParams() {
@@ -120,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 params.put("Contactname", contact_name.getText().toString());
                 params.put("Contactnum", contact_num.getText().toString());
                 params.put("amenities",mJSONArray.toString());
-                params.put("url",url);
+                params.put("url",url1);
                 params.put("bcard",bcard.getText().toString());
                 params.put("Gender_male",Integer.toString(m));
                 params.put("Gender_female",Integer.toString(f));
@@ -184,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 // Load image using Picasso library
                 ImageView imageView = (ImageView) findViewById(R.id.imageResult);
                 Picasso.with(getBaseContext()).load(file.getUrl()).into(imageView);
-                url=file.getUrl();
+                url1=file.getUrl();
             } else if(resultCode == RESULT_CANCELED && data != null) {
                 Uri fileUri = data.getData();
 
@@ -193,4 +211,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
 
