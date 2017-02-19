@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     String[] amen;
     int m=0,f=0;
     // OPTIONAL FIELD
-    private static final String PARENT_APP = "FLYTTA_FORM";
+    private static final String PARENT_APP = "FORM";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
