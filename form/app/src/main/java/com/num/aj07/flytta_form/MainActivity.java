@@ -34,7 +34,7 @@ import io.filepicker.Filepicker;
 import io.filepicker.models.FPFile;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String FILEPICKER_API_KEY = "A82mVmsgdS8KEm90aaGrCz";
+    private static final String FILEPICKER_API_KEY = "put_your_filestack_api_here";
     EditText name,address,area,price_rooms,contact_name,contact_num,amenities,bcard;
     String lat,lon,url1;
     String[] amen;
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         // Tag used to cancel the request
         String tag_json_obj = "json_obj_req";
 
-        final String url = "http://cdnflytta.com:3007/flytta_api/v0.1/portal/property/add";
+        final String url = "api_to_send_the_json object_url";
 
         final ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...");
